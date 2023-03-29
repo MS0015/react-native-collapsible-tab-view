@@ -247,7 +247,6 @@ export const Container = React.memo(
           }
         }
       )
-
       const headerTranslateY = useDerivedValue(() => {
         return revealHeaderOnScroll
           ? -accDiffClamp.value
@@ -261,6 +260,13 @@ export const Container = React.memo(
               translateY: headerTranslateY.value,
             },
           ],
+        }
+      }, [revealHeaderOnScroll])
+
+
+      const stylezHeader = useAnimatedStyle(() => {
+        return {
+         opacity:headerTranslateY.value>-50?1:0,
         }
       }, [revealHeaderOnScroll])
 
@@ -388,11 +394,12 @@ export const Container = React.memo(
                 !cancelTranslation && stylez,
               ]}
             >
-              <View
-                style={[styles.container, styles.headerContainer]}
+              <Animated.View
+                style={[styles.container, styles.headerContainer,stylezHeader]}
                 onLayout={getHeaderHeight}
                 pointerEvents="box-none"
               >
+             
                 {renderHeader &&
                   renderHeader({
                     containerRef,
@@ -403,7 +410,7 @@ export const Container = React.memo(
                     onTabPress,
                     tabProps,
                   })}
-              </View>
+              </Animated.View>
               <View
                 style={[styles.container, styles.tabBarContainer]}
                 onLayout={getTabBarHeight}
