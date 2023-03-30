@@ -266,7 +266,7 @@ export const Container = React.memo(
 
       const stylezHeader = useAnimatedStyle(() => {
         return {
-         opacity:headerTranslateY.value>-50?1:0,
+         opacity:headerTranslateY.value>-40?1:0,
         }
       }, [revealHeaderOnScroll])
 
