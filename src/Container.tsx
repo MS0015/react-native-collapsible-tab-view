@@ -81,6 +81,7 @@ export const Container = React.memo(
         onTabChange,
         width: customWidth,
         allowHeaderOverscroll,
+        hideHeader=false,
       },
       ref
     ) => {
@@ -395,7 +396,7 @@ export const Container = React.memo(
               ]}
             >
               <Animated.View
-                style={[styles.container, styles.headerContainer,stylezHeader]}
+                style={[styles.container, styles.headerContainer, hideHeader &&stylezHeader]}
                 onLayout={getHeaderHeight}
                 pointerEvents="box-none"
               >
